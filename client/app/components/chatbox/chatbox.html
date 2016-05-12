@@ -1,15 +1,9 @@
 <div class="container">
     <div class="row">
-        <form [style.display] = "isUserExist == true ? 'none': 'block'">
-            <div class="form-group">
-                <label for="nickname" class="col-lg-2 control-label">Nickname</label>
-                <div class="col-lg-10">
-                    <input type="text" [(ngModel)] = "nickname" class="form-control" id="nickname" placeholder="nickname">
-                </div>
-            </div>
-            <button type="button" (click) = registerUser(nickname) class="btn btn-primary">Submit</button>
-        </form>
-        <div class="col-md-5 col-md-offset-2 chatbox-style">
+        <div class="col-md-5 col-lg-7 col-md-offset-2">
+            <register></register>
+        </div>
+        <div class="col-md-5 col-md-offset-2 chatbox-style" [style.display]="displayChatForm == true ? 'block' : 'none'">
             <div class="panel panel-primary">
                 <div class="panel-heading" id="accordion">
                     <span class="glyphicon glyphicon-comment"></span> Chat

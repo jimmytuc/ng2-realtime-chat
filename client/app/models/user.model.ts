@@ -3,7 +3,7 @@ export class User{
 
     nickName:string;
 
-    constructor(public nickname:string){
+    constructor(nickname:string){
 
         this.nickName = nickname;
     }

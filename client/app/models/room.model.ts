@@ -3,7 +3,7 @@ export class Room{
 
     roomName:string;
 
-    constructor(public roomname:string){
+    constructor(roomname:string){
         this.roomName = roomname;
     }
 }

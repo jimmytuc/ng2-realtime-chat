@@ -19,7 +19,8 @@ gulp.task("copy:libs", function () {
             "node_modules/reflect-metadata/Reflect.js",
             "node_modules/systemjs/dist/system.src.js",
             'node_modules/socket.io-client/socket.io.js',
-            "client/systemjs.config.js"
+            "client/systemjs.config.js",
+            "node_modules/ng2-bs3-modal/ng2-bs3-modal.js"
         ])
         .pipe(gulp.dest('build/lib'))
 

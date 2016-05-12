@@ -7,7 +7,8 @@
         'rxjs':                       'lib/node_modules/rxjs',
         'angular2-in-memory-web-api': 'lib/node_modules/angular2-in-memory-web-api',
         '@angular':                   'lib/node_modules/@angular',
-        'socket.io-client':           'lib/socket.io.js'
+        'socket.io-client':           'lib/socket.io.js',
+        'ng2-bs3-modal':              'lib/ng2-bs3-modal'
     };
 
     // packages tells the System loader how to load when no filename and/or no extension

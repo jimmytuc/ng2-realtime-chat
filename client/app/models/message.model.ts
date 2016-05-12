@@ -9,7 +9,7 @@ export class Message{
     room:Room;
     user:User;
 
-    constructor(public message:string, public _user:User, public _room?:Room){
+    constructor(message:string, _user:User, _room?:Room){
 
         this.text = message;
         this.createdDate = new Date();

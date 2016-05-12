@@ -5,14 +5,14 @@ import {NgFor, NgIf} from "@angular/common";
 import {Message} from "../../models/message.model";
 import {LocalStorage} from "../../services/localStorage.service";
 import {User} from "../../models/user.model";
-
+import {RegisterFormComponent} from "../registerForm/register.component";
 
 
 @Component({
     
     selector:"chatbox",
     templateUrl:"app/components/chatbox/chatbox.html",
-    directives:[NgFor, NgIf],
+    directives:[NgFor, NgIf, RegisterFormComponent],
     providers:[LocalStorage],
     styles:[`
         .chat
@@ -88,18 +88,19 @@ export class ChatBoxComponent implements OnInit{
     allmessages:Array<any> = new Array();
     currentUser:User;
     nickname:string;
-    isUserExist:boolean;
+    displayChatForm:boolean;
 
     constructor(private _messageService:MessageService, private _localStorageService:LocalStorage){
 
+        this.displayChatForm = false;
     }
 
     ngOnInit():any{
         this.currentUser = this._localStorageService.getUser();
         if(this._localStorageService.getUser())
-            this.isUserExist = true;
+            this.displayChatForm = true;
         else
-            this.isUserExist = false;
+            this.displayChatForm = false;
 
         this._messageService.message.subscribe(data => {
             this.allmessages.push(data);

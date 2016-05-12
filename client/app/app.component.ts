@@ -24,6 +24,5 @@ export class AppComponent implements OnInit{
         this.socket.on("newMessage", (message) => {
             this._messageService.listener.next(message);
         });
-        this._messageService.message.subscribe(message => console.log(this._messageService.message));
     }
 }

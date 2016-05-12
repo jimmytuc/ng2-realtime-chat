@@ -19,8 +19,7 @@ gulp.task("copy:libs", function () {
             "node_modules/reflect-metadata/Reflect.js",
             "node_modules/systemjs/dist/system.src.js",
             'node_modules/socket.io-client/socket.io.js',
-            "client/systemjs.config.js",
-            "node_modules/ng2-bs3-modal/ng2-bs3-modal.js"
+            "client/systemjs.config.js"
         ])
         .pipe(gulp.dest('build/lib'))
 
@@ -31,7 +30,8 @@ gulp.task("copy:node_modules", function () {
     return gulp.src([
             "node_modules/rxjs/**/",
             "node_modules/angular2-in-memory-web-api/**/",
-            "node_modules/@angular/**/"
+            "node_modules/@angular/**/",
+            "node_modules/ng2-bs3-modal/**/"
         ], {base: "."})
         .pipe(gulp.dest("build/lib"))
 });

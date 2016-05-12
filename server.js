@@ -12,7 +12,7 @@ db.serialize(function() {
 //create table if not exist
     db.run("CREATE TABLE IF NOT EXISTS ROOMS"
         + "(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
-        + "name TEXT"
+        + "name TEXT UNIQUE"
         + ")"
     ),
     db.run(

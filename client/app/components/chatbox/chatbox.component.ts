@@ -88,21 +88,23 @@ export class ChatBoxComponent implements OnInit{
     allmessages:Array<any> = new Array();
     currentUser:User;
     nickname:string;
-    displayChatForm:boolean;
+    isUserRegister:boolean;
 
     constructor(private _messageService:MessageService, private _localStorageService:LocalStorage){
 
-        this.displayChatForm = false;
     }
 
     ngOnInit():any{
+
+        if(this._localStorageService.isUserRegister() && this._localStorageService.isRoomSelected()){
+            this.isUserRegister = true;
+        }else{
+            this.isUserRegister = false;
+        }
         this.currentUser = this._localStorageService.getUser();
-        if(this._localStorageService.getUser())
-            this.displayChatForm = true;
-        else
-            this.displayChatForm = false;
 
         this._messageService.message.subscribe(data => {
+            console.log(data);
             this.allmessages.push(data);
 
         })

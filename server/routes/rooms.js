@@ -5,8 +5,6 @@ module.exports = function (app, db) {
 
         var rooms = [];
 
-        db.run("insert into ROOMS(name) values(?)", ["dddsadas"]);
-        //var rooms = db.run("SELECT * FROM ROOMS");
         db.each("SELECT * FROM ROOMS", function(err, row) {
             rooms.push(row.name);
         }, function() {
@@ -17,7 +15,14 @@ module.exports = function (app, db) {
     });
 
     app.post("/rooms", function (req, res) {
-        db.run("insert into ROOMS(name) values(?)", ["dddsadas"]);
-        return res.json("sdas");
+
+        db.run("insert into ROOMS (name) values (?)",[req.body.room], function (err) {
+            if(err == null){
+                res.status(200);
+                return res.json("room added successfully");
+                }
+            res.status(400);
+            return res.json("room already exist");
+        });
     })
 };

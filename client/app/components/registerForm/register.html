@@ -1,8 +1,7 @@
-<div class="alert alert-dismissible" id="registerMessage" [style.display]="showRegisterMessage == false ? 'none' : 'block'">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
+<div class="alert alert-dismissible custom-alert" id="registerMessage" [style.display]="showRegisterMessage == false ? 'none' : 'block'">
     <strong>{{ registermessage }}</strong>
 </div>
-<form class="form-horizontal registerform-style">
+<form class="form-horizontal registerform-style col-lg-4 col-lg-offset-4 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
     <fieldset>
         <legend>Enter your name and select room</legend>
         <div class="form-group">

@@ -1,66 +1,57 @@
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-4">
-        </div>
-        <div class="col-md-4">
+<div class="container">
 
-            <div [style.display]="isUserRegister == true ? 'none' : 'block'">
-                <register (userRegistered)="isUserRegister=$event"></register>
+    <div [style.display]="isUserRegister == true ? 'none' : 'block'">
+        <register (userRegistered)="isUserRegister=$event"></register>
+    </div>
+    <div class="chatbox-style col-lg-6 col-lg-offset-2 col-md-6 col-md-offset-2" [style.display]="isUserRegister == true ? 'block' : 'none'">
+        <div class="panel panel-primary">
+            <div class="panel-heading" id="accordion">
+                <span class="glyphicon glyphicon-comment"></span> Chat
             </div>
-            <div class="chatbox-style" [style.display]="isUserRegister == true ? 'block' : 'none'">
-                <div class="panel panel-primary">
-                    <div class="panel-heading" id="accordion">
-                        <span class="glyphicon glyphicon-comment"></span> Chat
-                    </div>
-                    <div class="panel-collapse collapse in" id="collapseOne">
-                        <div class="panel-body" style="height: 400px">
-                            <ul class="chat">
-                                <div [style.display]="allmessages.length == 0 ? 'none' : 'block'" *ngFor="let message of allmessages">
-                                    <li [style.display]="currentUser.nickName==message.user.nickName ? 'block':'none'" class="right clearfix" ><span class="chat-img pull-right">
+            <div class="panel-collapse collapse in" id="collapseOne">
+                <div class="panel-body" style="height: 400px">
+                    <ul class="chat">
+                        <div [style.display]="allmessages.length == 0 ? 'none' : 'block'" *ngFor="let message of allmessages">
+                            <li [style.display]="currentUser.nickName==message.user.nickName ? 'block':'none'" class="right clearfix" ><span class="chat-img pull-right">
                             <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />
                         </span>
-                                        <div class="chat-body clearfix">
-                                            <div class="header">
-                                                <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>{{ message.createdDate }}</small>
-                                                <strong class="pull-right primary-font">{{ message.user.nickName }}</strong>
-                                            </div>
-                                            <p>
-                                                {{ message.text }}
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li [style.display]="currentUser.nickName==message.user.nickName ? 'none':'block'" class="left clearfix"><span class="chat-img pull-left">
+                                <div class="chat-body clearfix">
+                                    <div class="header">
+                                        <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>{{ message.createdDate }}</small>
+                                        <strong class="pull-right primary-font">{{ message.user.nickName }}</strong>
+                                    </div>
+                                    <p>
+                                        {{ message.text }}
+                                    </p>
+                                </div>
+                            </li>
+                            <li [style.display]="currentUser.nickName==message.user.nickName ? 'none':'block'" class="left clearfix"><span class="chat-img pull-left">
                             <img src="http://placehold.it/50/55C1E7/fff&text=YOU" alt="User Avatar" class="img-circle" />
                         </span>
-                                        <div class="chat-body clearfix">
-                                            <div class="header">
-                                                <strong class="primary-font">{{ message.user.nickName }}</strong> <small class="pull-right text-muted">
-                                                <span class="glyphicon glyphicon-time"></span>{{ message.createdDate }}</small>
-                                            </div>
-                                            <p>
-                                                {{ message.text }}
-                                            </p>
-                                        </div>
-                                    </li>
+                                <div class="chat-body clearfix">
+                                    <div class="header">
+                                        <strong class="primary-font">{{ message.user.nickName }}</strong> <small class="pull-right text-muted">
+                                        <span class="glyphicon glyphicon-time"></span>{{ message.createdDate }}</small>
+                                    </div>
+                                    <p>
+                                        {{ message.text }}
+                                    </p>
                                 </div>
-                            </ul>
+                            </li>
                         </div>
-                        <div class="panel-footer">
-                            <div class="input-group">
-                                <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." [(ngModel)]="userMessage"/>
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group">
+                        <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." [(ngModel)]="userMessage"/>
                         <span class="input-group-btn">
                             <button class="btn btn-warning btn-sm" id="btn-chat" (click)="sendMessage(userMessage)" [disabled]="!userMessage">
                                 Send</button>
                         </span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
-
-        </div>
-        <div class="col-md-4">
         </div>
     </div>
-</div>
+</div> <!-- /container -->

@@ -104,9 +104,7 @@ export class ChatBoxComponent implements OnInit{
         this.currentUser = this._localStorageService.getUser();
 
         this._messageService.message.subscribe(data => {
-            console.log(data);
             this.allmessages.push(data);
-
         })
     }
 

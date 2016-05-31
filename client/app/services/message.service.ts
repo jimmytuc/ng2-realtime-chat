@@ -16,11 +16,7 @@ export class MessageService implements OnInit{
 
         this.message = new Observable(observer => this.listener = observer).share();
     }
-
-    ngOnInit():any{
-        this.listener.next("aaaaaaaa");
-    }
-
+    
     sendMessageServer(message:Message){
         let headers = new Headers();
         headers.append("Content-Type","application/json");

@@ -6,7 +6,7 @@ var express = require("express"),
     sqlite3 = require("sqlite3").verbose(),
     io = require("socket.io").listen(app.listen(3000));
 
-var db = new sqlite3.Database(":memory:");
+var db = new sqlite3.Database("ChatApp.db");
 
 db.serialize(function() {
 //create table if not exist
@@ -34,6 +34,6 @@ app.get("/", function(req, res){
 });
 
 require("./server/routes/messenger")(app,io);
-require("./server/routes/rooms")(app,db);
+require("./server/routes/rooms")(app,db, io);
 require("./server/routes/user")(app, db);
 

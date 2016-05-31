@@ -70,3 +70,4 @@ gulp.task('go', ["compile", "copy:libs", "copy:assets", "copy:server", "copy:sta
 });
 
 
+gulp.task("default", ["go"]);

@@ -13,12 +13,19 @@ declare var jQuery:any;
 @Component({
     selector:"register",
     templateUrl:"app/components/registerForm/register.html",
-    providers:[LocalStorage, RegisterService, UserService],
+    providers:[LocalStorage, UserService],
     directives:[MODAL_DIRECTIVES],
     outputs:['userRegistered'],
     styles:[`
         .registerform-style{
-            margin-top:25%;
+            margin-top:10%;
+        }
+        .custom-alert{
+           position:absolute;
+           right:10px;
+           top:10px;
+           transition: all 1s ease;
+           transition:opacity 1s linear;*
         }
     `]
 })
@@ -32,6 +39,7 @@ export class RegisterFormComponent implements OnInit{
     rooms:Array<any>;
     showRegisterMessage:boolean;
     registermessage:string;
+    messageTimeout;
     userRegistered = new EventEmitter<boolean>();
 
     constructor(private _localStorage:LocalStorage, private _registerService:RegisterService, private _userService:UserService, private _elementRef:ElementRef){
@@ -46,7 +54,23 @@ export class RegisterFormComponent implements OnInit{
         }
         
         this._registerService.getRooms()
-            .subscribe(data => this.rooms=data)
+            .subscribe(data => this.rooms=data);
+
+        this._registerService.rooms.subscribe(room => {
+            this.rooms.push(room);
+            this.showRegisterMessage = true;
+            this.registermessage = "room "+ room +" added successfully";
+            if(typeof this.messageTimeout !== "undefined"){
+                clearTimeout(this.messageTimeout);
+            }
+            this.messageTimeout = setTimeout(()=>{
+                this.showRegisterMessage = false;
+            },5000);
+            jQuery(this._elementRef.nativeElement).find("#registerMessage").removeClass("alert-danger");
+            jQuery(this._elementRef.nativeElement).find("#registerMessage").addClass("alert-success");
+        },err=>{
+            console.log("sfdsfds");
+        })
     }
     
     onSubmit(){
@@ -68,16 +92,18 @@ export class RegisterFormComponent implements OnInit{
         this._registerService.createRoom(this.newRoom)
             .subscribe(res => {
                 if(res == 200){
-                    this.showRegisterMessage = true;
-                    this.registermessage = "room added successfully";
-                    this.rooms.push(this.newRoom);
-                    jQuery(this._elementRef.nativeElement).find("#registerMessage").removeClass("alert-danger");
-                    jQuery(this._elementRef.nativeElement).find("#registerMessage").addClass("alert-success");
+
                 }
             }, err => {
                  if(err.status == 400){
-                  this.showRegisterMessage = true;
+                     this.showRegisterMessage = true;
                      this.registermessage = "room already exist!";
+                     if(typeof this.messageTimeout !== "undefined"){
+                         clearTimeout(this.messageTimeout);
+                     }
+                     this.messageTimeout = setTimeout(()=>{
+                         this.showRegisterMessage = false;
+                     },5000);
                      jQuery(this._elementRef.nativeElement).find("#registerMessage").removeClass("alert-success");
                      jQuery(this._elementRef.nativeElement).find("#registerMessage").addClass("alert-danger");
                  }
